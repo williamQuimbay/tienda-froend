@@ -1,0 +1,143 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  background-color: #1f1f1f;
+  color: #00e676;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+aside {
+  width: 20%;
+  padding: 1rem;
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin-right: 2rem;
+}
+
+#search,
+#brand-filter,
+#type-filter {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  background-color: #333;
+  color: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+}
+
+#search::placeholder {
+  color: #999;
+}
+
+#device-list {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.device-item {
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 10px;
+  margin: 1rem;
+  padding: 1rem;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.device-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.device-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Estilos para los botones de las tarjetas */
+.device-item button {
+  background-color: #00e676;
+  color: #1f1f1f;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.device-item button:hover {
+  background-color: #00c853;
+}
+
+/* Estilos para el botón "Volver al Inicio" */
+button {
+  background-color: #00e676;
+  color: #1f1f1f;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button:hover {
+  background-color: #00c853;
+  transform: translateY(-3px);
+}
+
+#device-details {
+  background-color: #1f1f1f;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+#device-details img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
