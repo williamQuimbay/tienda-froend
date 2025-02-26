@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Agregar Dispositivo</title>
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+        <header>
+            <h1>Agregar Dispositivo</h1>
+            <button onclick="window.location.href='../index.html'">Volver a la
+                Lista</button>
+        </header>
+        <main>
+            <form id="add-device-form">
+                <label for="ID_Producto">ID Producto:</label>
+                <input type="text" id="ID_Producto" name="ID_Producto" required>
+
+                <label for="Codigo_Producto">Código Producto:</label>
+                <input type="text" id="Codigo_Producto" name="Codigo_Producto"
+                    required>
+
+                <label for="Marca">Marca:</label>
+                <input type="text" id="Marca" name="Marca" required>
+
+                <label for="Modelo">Modelo:</label>
+                <input type="text" id="Modelo" name="Modelo" required>
+
+                <label for="Pantalla">Pantalla:</label>
+                <input type="text" id="Pantalla" name="Pantalla" required>
+
+                <label for="Resolucion">Resolución:</label>
+                <input type="text" id="Resolucion" name="Resolucion" required>
+
+                <label for="Procesador">Procesador:</label>
+                <input type="text" id="Procesador" name="Procesador" required>
+
+                <label for="RAM">RAM:</label>
+                <input type="text" id="RAM" name="RAM" required>
+
+                <label for="Almacenamiento">Almacenamiento:</label>
+                <input type="text" id="Almacenamiento" name="Almacenamiento"
+                    required>
+
+                <label for="Bateria">Batería:</label>
+                <input type="text" id="Bateria" name="Bateria" required>
+
+                <label for="Sistema_Operativo">Sistema Operativo:</label>
+                <input type="text" id="Sistema_Operativo"
+                    name="Sistema_Operativo" required>
+
+                <label for="Conectividad">Conectividad:</label>
+                <input type="text" id="Conectividad" name="Conectividad"
+                    required>
+
+                <label for="Precio">Precio:</label>
+                <input type="text" id="Precio" name="Precio" required>
+
+                <label for="Fecha_Lanzamiento">Fecha de Lanzamiento:</label>
+                <input type="date" id="Fecha_Lanzamiento"
+                    name="Fecha_Lanzamiento" required>
+
+                <label for="url_Imagen">URL de la Imagen:</label>
+                <input type="text" id="url_Imagen" name="url_Imagen" required>
+
+                <button type="submit">Agregar Dispositivo</button>
+            </form>
+        </main>
+        <script src="/js/add-device.js"></script>
+    </body>
+</html>

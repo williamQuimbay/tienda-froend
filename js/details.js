@@ -1,3 +1,5 @@
+// script para cargar los detalles del dispositivo
+
 document.addEventListener("DOMContentLoaded", () => {
   const deviceDetails = JSON.parse(localStorage.getItem("deviceDetails"));
   if (deviceDetails) {
