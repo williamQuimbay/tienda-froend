@@ -14,7 +14,7 @@
                     <button id="auth-button"
                         onclick="handleAuthButtonClick()">Iniciar
                         Sesión</button>
-                    <button
+                    <button id="register-button"
                         onclick="window.location.href='./vista/register.html'">Registrarse</button>
                     <span id="user-name"></span>
                     <button id="admin-button" style="display: none;"
@@ -50,11 +50,13 @@
             const userName = localStorage.getItem("nombre_usuario");
             const rol = localStorage.getItem("rol");
             const authButton = document.getElementById("auth-button");
+            const registerButton = document.getElementById("register-button");
 
             if (userName) {
                 document.getElementById("user-name").textContent = `Bienvenido, ${userName}`;
                 authButton.textContent = "Cerrar Sesión";
                 authButton.onclick = handleLogout;
+                registerButton.style.display = "none"; // Ocultar el botón de registro
             } else {
                 authButton.textContent = "Iniciar Sesión";
                 authButton.onclick = () => window.location.href = './vista/login.html';

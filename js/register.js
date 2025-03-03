@@ -26,6 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const result = await response.json();
       alert(result.message);
+      if (response.status === 201) {
+        window.location.href = "/index.html"; // Redirigir al index después de un registro exitoso
+      }
     } catch (error) {
       console.error("Error al registrarse:", error);
       alert("Error al registrarse");
