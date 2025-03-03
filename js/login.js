@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const result = await response.json();
-      alert(result.message);
       if (response.status === 200) {
         localStorage.setItem("nombre_usuario", result.nombre_usuario); // Almacenar el nombre de usuario
         localStorage.setItem("rol", result.rol); // Almacenar el rol del usuario
