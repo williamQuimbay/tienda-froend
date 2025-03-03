@@ -11,12 +11,12 @@
             <div class="header-container">
                 <h1>Tienda Electrónica</h1>
                 <nav>
-                    <button
-                        onclick="window.location.href='./vista/login.html'">Iniciar
+                    <button id="auth-button"
+                        onclick="handleAuthButtonClick()">Iniciar
                         Sesión</button>
                     <button
                         onclick="window.location.href='./vista/register.html'">Registrarse</button>
-                    <span id="user-email"></span>
+                    <span id="user-name"></span>
                     <button id="admin-button" style="display: none;"
                         onclick="window.location.href='./vista/vistaAdmin.html'">Vista
                         Administrador</button>
@@ -47,15 +47,39 @@
         <script src="./js/script.js"></script>
         <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const userEmail = localStorage.getItem("correo");
+            const userName = localStorage.getItem("nombre_usuario");
             const rol = localStorage.getItem("rol");
-            if (userEmail) {
-                document.getElementById("user-email").textContent = `Bienvenido, ${userEmail}`;
+            const authButton = document.getElementById("auth-button");
+
+            if (userName) {
+                document.getElementById("user-name").textContent = `Bienvenido, ${userName}`;
+                authButton.textContent = "Cerrar Sesión";
+                authButton.onclick = handleLogout;
+            } else {
+                authButton.textContent = "Iniciar Sesión";
+                authButton.onclick = () => window.location.href = './vista/login.html';
             }
+
             if (rol === 'admin') {
                 document.getElementById("admin-button").style.display = "inline-block";
             }
         });
-    </script>
+
+        function handleLogout() {
+            localStorage.removeItem("correo");
+            localStorage.removeItem("rol");
+            localStorage.removeItem("nombre_usuario");
+            window.location.href = 'index.html';
+        }
+
+        function handleAuthButtonClick() {
+            const userName = localStorage.getItem("nombre_usuario");
+            if (userName) {
+                handleLogout();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+        </script>
     </body>
 </html>
