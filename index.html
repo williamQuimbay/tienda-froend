@@ -45,43 +45,6 @@
         </main>
 
         <script src="./js/script.js"></script>
-        <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const userName = localStorage.getItem("nombre_usuario");
-            const rol = localStorage.getItem("rol");
-            const authButton = document.getElementById("auth-button");
-            const registerButton = document.getElementById("register-button");
 
-            if (userName) {
-                document.getElementById("user-name").textContent = `Bienvenido, ${userName}`;
-                authButton.textContent = "Cerrar Sesión";
-                authButton.onclick = handleLogout;
-                registerButton.style.display = "none"; // Ocultar el botón de registro
-            } else {
-                authButton.textContent = "Iniciar Sesión";
-                authButton.onclick = () => window.location.href = './vista/login.html';
-            }
-
-            if (rol === 'admin') {
-                document.getElementById("admin-button").style.display = "inline-block";
-            }
-        });
-
-        function handleLogout() {
-            localStorage.removeItem("correo");
-            localStorage.removeItem("rol");
-            localStorage.removeItem("nombre_usuario");
-            window.location.href = 'index.html';
-        }
-
-        function handleAuthButtonClick() {
-            const userName = localStorage.getItem("nombre_usuario");
-            if (userName) {
-                handleLogout();
-            } else {
-                window.location.href = 'index.html';
-            }
-        }
-        </script>
     </body>
 </html>
