@@ -4,7 +4,7 @@ const multer = require("multer");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors"); // Requerir el paquete cors
-// const open = require("open"); // Eliminar la referencia al paquete open
+const open = require("open"); // Requerir el paquete open
 const connection = require("./js/database");
 
 const app = express();
@@ -116,5 +116,5 @@ app.get("/productos", (req, res) => {
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
-  // open(`http://localhost:${PORT}/index.html`); // Eliminar la línea que abre la aplicación en el navegador
+  open(`http://localhost:${PORT}/index.html`); // Abrir la aplicación en el navegador
 });
