@@ -4,7 +4,6 @@ const multer = require("multer");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors"); // Requerir el paquete cors
-const open = require("open"); // Requerir el paquete open
 const connection = require("./js/database");
 
 const app = express();
@@ -67,16 +66,22 @@ app.post("/agregar-producto", upload.single("imagen"), (req, res) => {
 app.post("/login", (req, res) => {
   const { correo, contraseña } = req.body;
 
+  console.log("Datos recibidos:", correo, contraseña); // Agregar log para depuración
+
   const query = "SELECT * FROM Usuarios WHERE correo = ? AND contraseña = ?";
   connection.query(query, [correo, contraseña], (err, results) => {
     if (err) {
+      console.error("Error en la consulta:", err); // Agregar log para depuración
       return res.status(500).json({ error: err.message });
     }
+
+    console.log("Resultados de la consulta:", results); // Agregar log para depuración
 
     if (results.length > 0) {
       res.status(200).json({
         message: "Inicio de sesión exitoso",
-        correo: results[0].correo,
+        nombre_usuario: results[0].nombre_usuario,
+        rol: results[0].rol, // Enviar el rol del usuario
       });
     } else {
       res.status(401).json({ message: "Correo o contraseña incorrectos" });
@@ -116,5 +121,6 @@ app.get("/productos", (req, res) => {
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
-  open(`http://localhost:${PORT}/index.html`); // Abrir la aplicación en el navegador
+  // Eliminar la línea que abre la aplicación en el navegador
+  // open(`http://localhost:${PORT}/index.html`);
 });

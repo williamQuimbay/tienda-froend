@@ -17,6 +17,9 @@
                     <button
                         onclick="window.location.href='./vista/register.html'">Registrarse</button>
                     <span id="user-email"></span>
+                    <button id="admin-button" style="display: none;"
+                        onclick="window.location.href='./vista/vistaAdmin.html'">Vista
+                        Administrador</button>
                 </nav>
             </div>
         </header>
@@ -45,8 +48,12 @@
         <script>
         document.addEventListener("DOMContentLoaded", () => {
             const userEmail = localStorage.getItem("correo");
+            const rol = localStorage.getItem("rol");
             if (userEmail) {
                 document.getElementById("user-email").textContent = `Bienvenido, ${userEmail}`;
+            }
+            if (rol === 'admin') {
+                document.getElementById("admin-button").style.display = "inline-block";
             }
         });
     </script>
