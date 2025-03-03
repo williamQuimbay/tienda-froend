@@ -4,6 +4,7 @@ const multer = require("multer");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors"); // Requerir el paquete cors
+// const open = require("open"); // Eliminar la referencia al paquete open
 const connection = require("./js/database");
 
 const app = express();
@@ -73,7 +74,10 @@ app.post("/login", (req, res) => {
     }
 
     if (results.length > 0) {
-      res.status(200).json({ message: "Inicio de sesión exitoso" });
+      res.status(200).json({
+        message: "Inicio de sesión exitoso",
+        correo: results[0].correo,
+      });
     } else {
       res.status(401).json({ message: "Correo o contraseña incorrectos" });
     }
@@ -109,6 +113,8 @@ app.get("/productos", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("Servidor corriendo en el puerto 3000");
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
+  // open(`http://localhost:${PORT}/index.html`); // Eliminar la línea que abre la aplicación en el navegador
 });

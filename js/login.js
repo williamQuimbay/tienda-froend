@@ -25,6 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const result = await response.json();
       alert(result.message);
+      if (response.status === 200) {
+        localStorage.setItem("correo", result.correo);
+        window.location.href = "/index.html"; // Ajustar la ruta de redirección
+      }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       alert("Error al iniciar sesión");
