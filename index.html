@@ -3,33 +3,43 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dispositivos Inteligentes</title>
-        <link rel="stylesheet" href="/css/styles.css">
+        <title>Tienda Electrónica</title>
+        <link rel="stylesheet" href="./css/styles.css">
     </head>
     <body>
         <header>
-            <h1>Dispositivos Inteligentes</h1>
-            <button
-                onclick="window.location.href='vista/add-device.html'">Agregar
-                Dispositivo</button>
+            <div class="header-container">
+                <h1>Tienda Electrónica</h1>
+                <nav>
+                    <button
+                        onclick="window.location.href='./vista/login.html'">Iniciar
+                        Sesión</button>
+                    <button
+                        onclick="window.location.href='./vista/register.html'">Registrarse</button>
+                </nav>
+            </div>
         </header>
+
         <main>
-            <aside>
+            <div class="filter-container">
                 <input type="text" id="search" placeholder="Buscar...">
-                <select id="brand-filter">
-                    <option value>Todas las marcas</option>
-                    <!-- Opciones de marcas se generarán dinámicamente -->
+                <select id="filter-marca">
+                    <option value>Marca</option>
+                    <!-- Opciones de marcas -->
                 </select>
-                <select id="type-filter">
-                    <option value>Todos los tipos</option>
-                    <option value="Celular">Celular</option>
-                    <option value="Portátil">Portátil</option>
+                <select id="filter-tipo">
+                    <option value>Tipo</option>
+                    <option value="celular">Celular</option>
+                    <option value="computadora">Computadora</option>
                 </select>
-            </aside>
-            <section id="device-list">
-                <!-- Aquí se generará la lista de dispositivos -->
-            </section>
+                <button id="apply-filters">Aplicar Filtros</button>
+            </div>
+
+            <div class="product-list">
+                <!-- Listado de productos -->
+            </div>
         </main>
-        <script src="/js/script.js"></script>
+
+        <script src="./js/script.js"></script>
     </body>
 </html>

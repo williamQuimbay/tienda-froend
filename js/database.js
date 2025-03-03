@@ -2,9 +2,9 @@ const mysql = require("mysql");
 
 const connection = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "",
-  database: "tienda",
+  user: "odin",
+  password: "D4nt30217",
+  database: "tiendaelectronica",
 });
 
 connection.connect((err) => {
@@ -16,5 +16,3 @@ connection.connect((err) => {
 });
 
 module.exports = connection;
-
-const connection = require("./database");

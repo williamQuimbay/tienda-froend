@@ -1,81 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const deviceList = document.getElementById("device-list");
-  const searchInput = document.getElementById("search");
-  const brandFilter = document.getElementById("brand-filter");
-  const typeFilter = document.getElementById("type-filter");
-  let devices = [];
+  const productList = document.querySelector(".product-list");
 
-  // Función para traer dispositivos desde la base de datos
-  async function fetchDevices() {
+  const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:5000/productos"); // URL de tu API
+      const response = await fetch("http://localhost:3000/productos");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      devices = await response.json();
-      generarOpcionesDeMarca(devices);
-      renderDevices(devices);
+      const products = await response.json();
+      renderProducts(products);
     } catch (error) {
-      console.error("Error al obtener los dispositivos:", error);
-    }
-  }
-
-  // Generar opciones de marca en el filtro
-  function generarOpcionesDeMarca(devices) {
-    const uniqueBrands = [...new Set(devices.map((device) => device.Marca))];
-    uniqueBrands.forEach((brand) => {
-      const option = document.createElement("option");
-      option.value = brand;
-      option.textContent = brand;
-      brandFilter.appendChild(option);
-    });
-  }
-
-  function renderDevices(filteredDevices) {
-    deviceList.innerHTML = "";
-    filteredDevices.forEach((device) => {
-      const deviceItem = document.createElement("div");
-      deviceItem.classList.add("device-item");
-      deviceItem.innerHTML = `
-              <img src="${device.Imagen}" alt="${device.Modelo}">
-              <h2>${device.Modelo}</h2>
-              <p><strong>Marca:</strong> ${device.Marca}</p>
-              <p><strong>Fecha de lanzamiento:</strong> ${device.Fecha_Lanzamiento}</p>
-              <button onclick="showDetails('${device.Modelo}')">Ver Detalles</button>
-          `;
-      deviceList.appendChild(deviceItem);
-    });
-  }
-
-  function filterDevices() {
-    const searchText = searchInput.value ? searchInput.value.toLowerCase() : "";
-    const selectedBrand = brandFilter.value;
-    const selectedType = typeFilter.value;
-
-    const filteredDevices = devices.filter((device) => {
-      const matchesSearch = device.Modelo.toLowerCase().includes(searchText);
-      const matchesBrand = !selectedBrand || device.Marca === selectedBrand;
-      const matchesType = !selectedType || device.Tipo === selectedType;
-      return matchesSearch && matchesBrand && matchesType;
-    });
-
-    renderDevices(filteredDevices);
-  }
-
-  searchInput.addEventListener("input", filterDevices);
-  brandFilter.addEventListener("change", filterDevices);
-  typeFilter.addEventListener("change", filterDevices);
-
-  // Renderizar la lista inicial de dispositivos
-  fetchDevices();
-
-  window.showDetails = function (deviceName) {
-    const device = devices.find((d) => d.Modelo === deviceName);
-    if (device) {
-      localStorage.setItem("deviceDetails", JSON.stringify(device));
-      window.location.href = "device-details.html";
-    } else {
-      console.error("Dispositivo no encontrado:", deviceName);
+      console.error("Error fetching products:", error);
     }
   };
+
+  const renderProducts = (products) => {
+    productList.innerHTML = "";
+    products.forEach((product) => {
+      const productItem = document.createElement("div");
+      productItem.classList.add("product-item");
+      productItem.innerHTML = `
+              <img src="${product.url_Imagen}" alt="${product.modelo}">
+              <h3>${product.modelo}</h3>
+              <p>Marca: ${product.marca}</p>
+              <p>Precio: $${product.precio}</p>
+          `;
+      productList.appendChild(productItem);
+    });
+  };
+
+  fetchProducts();
 });
