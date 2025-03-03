@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tienda Electrónica</title>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="./css/styles.css">
     </head>
     <body>
@@ -11,21 +13,28 @@
             <div class="header-container">
                 <h1>Tienda Electrónica</h1>
                 <nav>
-                    <button id="auth-button"
-                        onclick="handleAuthButtonClick()">Iniciar
-                        Sesión</button>
+                    <button id="auth-button" onclick="handleAuthButtonClick()">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </button>
                     <button id="register-button"
-                        onclick="window.location.href='./vista/register.html'">Registrarse</button>
-                    <span id="user-name"></span>
+                        onclick="window.location.href='./vista/register.html'">
+                        <i class="fas fa-user-plus"></i> Registrarse
+                    </button>
                     <button id="admin-button" style="display: none;"
-                        onclick="window.location.href='./vista/vistaAdmin.html'">Vista
-                        Administrador</button>
+                        onclick="window.location.href='./vista/vistaAdmin.html'">
+                        <i class="fas fa-user-shield"></i> Vista Administrador
+                    </button>
+                    <span id="user-avatar" class="user-avatar"
+                        style="display: none;">
+                        <i class="fas fa-user-circle"></i> <span
+                            id="user-name"></span>
+                    </span>
                 </nav>
             </div>
         </header>
 
         <main>
-            <div class="filter-container">
+            <aside class="sidebar">
                 <input type="text" id="search" placeholder="Buscar...">
                 <select id="filter-marca">
                     <option value>Marca</option>
@@ -37,14 +46,15 @@
                     <option value="computadora">Computadora</option>
                 </select>
                 <button id="apply-filters">Aplicar Filtros</button>
-            </div>
+            </aside>
 
-            <div class="product-list">
-                <!-- Listado de productos -->
+            <div class="content">
+                <div class="product-list">
+                    <!-- Listado de productos -->
+                </div>
             </div>
         </main>
 
         <script src="./js/script.js"></script>
-
     </body>
 </html>
