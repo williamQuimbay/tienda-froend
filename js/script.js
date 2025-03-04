@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:3000/productos");
+      const response = await fetch("http://localhost:3000/dispositivos");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

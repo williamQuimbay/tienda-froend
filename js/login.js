@@ -27,11 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (response.status === 200) {
         localStorage.setItem("nombre_usuario", result.nombre_usuario); // Almacenar el nombre de usuario
         localStorage.setItem("rol", result.rol); // Almacenar el rol del usuario
+        localStorage.setItem("es_admin", result.rol === "admin"); // Almacenar si es administrador
         window.location.href = "/index.html"; // Ajustar la ruta de redirección
+      } else {
+        console.error("Error al iniciar sesión:", result.message);
       }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
-      alert("Error al iniciar sesión");
     }
   });
 });

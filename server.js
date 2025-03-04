@@ -108,8 +108,8 @@ app.post("/register", (req, res) => {
 });
 
 // Ruta para obtener productos
-app.get("/productos", (req, res) => {
-  const query = "SELECT * FROM Productos";
+app.get("/dispositivos", (req, res) => {
+  const query = "SELECT * FROM dispositivos";
   connection.query(query, (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
@@ -118,9 +118,60 @@ app.get("/productos", (req, res) => {
   });
 });
 
+// Ruta para registrar dispositivos
+app.post("/register-device", (req, res) => {
+  const {
+    tipo,
+    marca,
+    modelo,
+    almacenamiento,
+    ram,
+    procesador,
+    pantalla,
+    precio,
+    url_imagen,
+  } = req.body;
+
+  // Asegúrate de que todos los campos estén definidos
+  if (
+    !tipo ||
+    !marca ||
+    !modelo ||
+    !almacenamiento ||
+    !ram ||
+    !procesador ||
+    !pantalla ||
+    !precio ||
+    !url_imagen
+  ) {
+    return res.status(400).json({ error: "Todos los campos son requeridos." });
+  }
+
+  const query =
+    "INSERT INTO dispositivos (tipo, marca, modelo, almacenamiento, ram, procesador, pantalla, precio, url_imagen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  connection.query(
+    query,
+    [
+      tipo,
+      marca,
+      modelo,
+      almacenamiento,
+      ram,
+      procesador,
+      pantalla,
+      precio,
+      url_imagen,
+    ],
+    (err, result) => {
+      if (err) {
+        console.error("Error al registrar el dispositivo:", err);
+        return res.status(500).json({ error: err.message });
+      }
+      res.status(201).json({ message: "Dispositivo registrado exitosamente" });
+    }
+  );
+});
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
-  // Eliminar la línea que abre la aplicación en el navegador
-  // open(`http://localhost:${PORT}/index.html`);
 });
