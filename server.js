@@ -107,7 +107,7 @@ app.post("/register", (req, res) => {
   );
 });
 
-// Ruta para obtener productos
+// Ruta para obtener dispositivos
 app.get("/dispositivos", (req, res) => {
   const query = "SELECT * FROM dispositivos";
   connection.query(query, (err, results) => {
@@ -171,6 +171,7 @@ app.post("/register-device", (req, res) => {
     }
   );
 });
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
