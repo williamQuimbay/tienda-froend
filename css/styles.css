@@ -1,9 +1,9 @@
 /* Estilos generales */
 body {
   font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
   display: flex;
   flex-direction: column;
 }
@@ -11,7 +11,7 @@ body {
 .header-container {
   background-color: #007bff;
   color: #fff;
-  padding: 5px;
+  padding: 20px;
   text-align: center;
   width: 100%;
   position: fixed;
@@ -23,6 +23,21 @@ body {
 .header-container h1 {
   margin: 0;
   padding-top: 2rem;
+}
+
+.header-container nav button {
+  background-color: #fff;
+  color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.header-container nav button:hover {
+  background-color: #e0e0e0;
 }
 
 nav {
@@ -62,6 +77,7 @@ main {
   background-color: #343a40;
   color: #fff;
   padding: 20px;
+  padding-top: 2.5rem;
   width: 250px;
   position: fixed;
   top: 9rem; /* Ajustar para dejar espacio para el header fijo */
@@ -167,4 +183,87 @@ main {
 
 .product-actions button:hover {
   background-color: #0056b3;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  padding-top: 6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.cart-product-image-container img {
+  max-width: 100px;
+  margin-right: 20px;
+}
+
+.cart-product-details {
+  flex: 1;
+}
+
+.cart-product-details h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.cart-product-details p {
+  margin: 5px 0;
+}
+
+.cart-product-details button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.cart-product-details button:hover {
+  background-color: #c82333;
+}
+
+.cart-actions {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.cart-actions button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.cart-actions button:hover {
+  background-color: #218838;
+}
+
+.total-cost {
+  text-align: right;
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+.empty-cart-message {
+  text-align: center;
+  font-size: 2rem;
+  color: #ff0000;
+  margin-top: 50px;
+}
+.cart-count {
+  background-color: #dc3545;
+  color: #fff;
+  border-radius: 50%;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  margin-left: 10px;
 }

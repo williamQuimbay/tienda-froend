@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterTipo = document.getElementById("filter-tipo");
   const applyFiltersButton = document.getElementById("apply-filters");
   const searchInput = document.getElementById("search");
+  const cartCount = document.getElementById("cart-count");
   let products = [];
 
   // Función para obtener los productos desde el servidor
@@ -74,7 +75,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartProducts = cart ? JSON.parse(cart) : [];
     cartProducts.push(product);
     localStorage.setItem("cart", JSON.stringify(cartProducts));
-    alert("Producto agregado al carrito");
+    updateCartCount();
+  };
+
+  // Función para actualizar el contador del carrito
+  const updateCartCount = () => {
+    const cart = localStorage.getItem("cart");
+    const cartProducts = cart ? JSON.parse(cart) : [];
+    cartCount.textContent = cartProducts.length;
   };
 
   // Función para poblar el filtro de marca
@@ -113,6 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Llamar a la función para obtener y renderizar los productos al cargar la página
   fetchProducts();
+
+  // Actualizar el contador del carrito al cargar la página
+  updateCartCount();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
