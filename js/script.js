@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const productList = document.querySelector(".product-list");
+  const filterMarca = document.getElementById("filter-marca");
+  const filterTipo = document.getElementById("filter-tipo");
+  const applyFiltersButton = document.getElementById("apply-filters");
+  const searchInput = document.getElementById("search");
+  let products = [];
 
   // Función para obtener los productos desde el servidor
   const fetchProducts = async () => {
@@ -8,8 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const products = await response.json();
+      products = await response.json();
       renderProducts(products);
+      populateMarcaFilter(products);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -40,12 +46,70 @@ document.addEventListener("DOMContentLoaded", () => {
               <p>Pantalla: ${product.pantalla}</p>
               <p>Precio: $${product.precio}</p>
             </div>
+            <div class="product-actions">
+              <button class="add-to-cart-button">
+                <i class="fas fa-shopping-cart"></i> Agregar al Carrito
+              </button>
+              <button class="buy-now-button">
+                <i class="fas fa-credit-card"></i> Comprar
+              </button>
+            </div>
           </div>
         </div>
       `;
       productList.appendChild(productItem);
+
+      // Añadir evento de clic al botón de agregar al carrito
+      productItem
+        .querySelector(".add-to-cart-button")
+        .addEventListener("click", () => {
+          addProductToCart(product);
+        });
     });
   };
+
+  // Función para agregar un producto al carrito
+  const addProductToCart = (product) => {
+    const cart = localStorage.getItem("cart");
+    const cartProducts = cart ? JSON.parse(cart) : [];
+    cartProducts.push(product);
+    localStorage.setItem("cart", JSON.stringify(cartProducts));
+    alert("Producto agregado al carrito");
+  };
+
+  // Función para poblar el filtro de marca
+  const populateMarcaFilter = (products) => {
+    const marcas = [...new Set(products.map((product) => product.marca))];
+    marcas.forEach((marca) => {
+      const option = document.createElement("option");
+      option.value = marca;
+      option.textContent = marca;
+      filterMarca.appendChild(option);
+    });
+  };
+
+  // Función para aplicar los filtros
+  const applyFilters = () => {
+    const selectedMarca = filterMarca.value;
+    const selectedTipo = filterTipo.value;
+    const searchText = searchInput.value.toLowerCase();
+    const filteredProducts = products.filter((product) => {
+      return (
+        (selectedMarca === "" || product.marca === selectedMarca) &&
+        (selectedTipo === "" || product.tipo === selectedTipo) &&
+        (product.modelo.toLowerCase().includes(searchText) ||
+          product.marca.toLowerCase().includes(searchText) ||
+          product.tipo.toLowerCase().includes(searchText))
+      );
+    });
+    renderProducts(filteredProducts);
+  };
+
+  // Añadir evento de clic al botón de aplicar filtros
+  applyFiltersButton.addEventListener("click", applyFilters);
+
+  // Añadir evento de entrada al campo de búsqueda
+  searchInput.addEventListener("input", applyFilters);
 
   // Llamar a la función para obtener y renderizar los productos al cargar la página
   fetchProducts();
