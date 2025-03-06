@@ -87,7 +87,7 @@ Licencia
 Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
 
 Contacto
-Si tienes alguna pregunta o sugerencia, no dudes en contactarme a través de tu-email@example.com.
+Si tienes alguna pregunta o sugerencia, no dudes en contactarme a través de quimbayfeo@gmail.com.
 
 ### Explicación:
 
