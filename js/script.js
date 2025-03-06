@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="product-details">
             <h3>${product.modelo}</h3>
             <p>Marca: ${product.marca}</p>
-            <p>Precio: $${product.precio}</p>
+            <p>Precio: ${formatPrice(product.precio)}</p>
             <div class="product-specs">
               <p>Tipo: ${product.tipo}</p>
               <p>Marca: ${product.marca}</p>
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <p>RAM: ${product.ram}</p>
               <p>Procesador: ${product.procesador}</p>
               <p>Pantalla: ${product.pantalla}</p>
-              <p>Precio: $${product.precio}</p>
+              <p>Precio: ${formatPrice(product.precio)}</p>
             </div>
             <div class="product-actions">
               <button class="add-to-cart-button">
@@ -169,3 +169,7 @@ function handleAuthButtonClick() {
     window.location.href = "./vista/login.html";
   }
 }
+// Función para formatear precios con separadores de mil y símbolo de pesos
+const formatPrice = (price) => {
+  return `$${price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}`;
+};

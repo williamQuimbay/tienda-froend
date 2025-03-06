@@ -18,11 +18,20 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header-container h1 {
   margin: 0;
   padding-top: 2rem;
+}
+
+.header-container nav {
+  display: flex;
+  align-items: center;
+  padding-right: 4rem;
 }
 
 .header-container nav button {
@@ -33,31 +42,22 @@ body {
   cursor: pointer;
   border-radius: 5px;
   font-size: 1rem;
-  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .header-container nav button:hover {
   background-color: #e0e0e0;
 }
 
-nav {
-  margin-top: 10px;
-  text-align: right;
-  margin-right: 6rem;
+.logo-container {
+  display: flex;
+  align-items: center;
 }
 
-nav button {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  margin: 5px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-nav button:hover {
-  background-color: #218838;
+.logo {
+  max-width: 100px;
+  height: auto;
+  border-radius: 50%;
 }
 
 nav span {
@@ -68,7 +68,7 @@ nav span {
 
 main {
   padding: 20px;
-  margin-top: 80px; /* Ajustar para dejar espacio para el header fijo */
+  margin-top: 100px; /* Ajustar para dejar espacio para el header fijo */
   flex: 1;
   display: flex;
 }
@@ -259,6 +259,7 @@ main {
   color: #ff0000;
   margin-top: 50px;
 }
+
 .cart-count {
   background-color: #dc3545;
   color: #fff;
