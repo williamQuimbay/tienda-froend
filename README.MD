@@ -88,14 +88,3 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE
 
 Contacto
 Si tienes alguna pregunta o sugerencia, no dudes en contactarme a través de quimbayfeo@gmail.com.
-
-### Explicación:
-
-1. **Características**: Describe las funcionalidades principales de la aplicación.
-2. **Tecnologías Utilizadas**: Enumera las tecnologías y herramientas utilizadas en el proyecto.
-3. **Instalación**: Proporciona instrucciones para clonar el repositorio y abrir el proyecto en un navegador.
-4. **Uso**: Explica cómo navegar por la aplicación, utilizar el carrito de compras y autenticarse.
-5. **Estructura del Proyecto**: Describe el propósito y el contenido de cada archivo principal en el proyecto.
-6. **Contribución**: Describe los pasos para contribuir al proyecto.
-7. **Licencia**: Indica la licencia del proyecto.
-8. **Contacto**: Proporciona información de contacto para preguntas o sugerencias.
