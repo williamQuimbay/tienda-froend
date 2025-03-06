@@ -99,5 +99,3 @@ Si tienes alguna pregunta o sugerencia, no dudes en contactarme a través de qui
 6. **Contribución**: Describe los pasos para contribuir al proyecto.
 7. **Licencia**: Indica la licencia del proyecto.
 8. **Contacto**: Proporciona información de contacto para preguntas o sugerencias.
-
-Guarda este contenido en un archivo llamado `README.md` en la raíz de tu proyecto. Esto ayudará a otros desarrolladores a entender y contribuir a tu proyecto.
