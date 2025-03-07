@@ -3,6 +3,18 @@ const formatPrice = (price) => {
   return `$${price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}`;
 };
 
+// Función para obtener el siguiente número de orden
+const getNextOrderNumber = () => {
+  let orderNumber = localStorage.getItem("orderNumber");
+  if (!orderNumber) {
+    orderNumber = 1;
+  } else {
+    orderNumber = parseInt(orderNumber) + 1;
+  }
+  localStorage.setItem("orderNumber", orderNumber);
+  return orderNumber;
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   const cartList = document.querySelector(".cart-list");
   const emptyCartMessage = document.querySelector(".empty-cart-message");
@@ -86,35 +98,67 @@ document.addEventListener("DOMContentLoaded", () => {
     const userName = localStorage.getItem("nombre_usuario") || "Cliente";
     const userEmail = localStorage.getItem("correo") || "correo@ejemplo.com";
     const currentDate = new Date().toLocaleDateString();
+    const orderNumber = getNextOrderNumber();
 
     // Encabezado de la factura
     doc.setFontSize(18);
-    doc.text("Factura de Compra", 20, 20);
+    doc.text("FACTURA", 20, 20);
+
+    // Información de la compañía
+    doc.setFontSize(12);
+    doc.text("TIENDA TECH", 150, 20);
+    doc.text("BOGOTA", 150, 25);
+    doc.text("COLOMBIA", 150, 30);
+    doc.text("(+57)314 408 5330", 150, 35);
 
     // Información del cliente
     doc.setFontSize(12);
-    doc.text(`Nombre: ${userName}`, 20, 30);
-    doc.text(`Correo: ${userEmail}`, 20, 40);
-    doc.text(`Fecha: ${currentDate}`, 20, 50);
+    doc.text("FECHA", 20, 50);
+    doc.text(currentDate, 50, 50);
+    doc.text("Nº ORDEN", 120, 50);
+    doc.text(orderNumber.toString().padStart(4, "0"), 150, 50);
+
+    doc.text("NOMBRE", 20, 60);
+    doc.text(userName, 50, 60);
+    doc.text("DIRECCIÓN", 20, 70);
+    doc.text("Dirección del cliente", 50, 70);
+    doc.text("TELÉFONO", 20, 80);
+    doc.text("Teléfono del cliente", 50, 80);
+    doc.text("CORREO", 20, 90);
+    doc.text(userEmail, 50, 90);
+
+    // Línea separadora
+    doc.line(20, 100, 190, 100);
 
     // Tabla de productos
     doc.setFontSize(14);
-    doc.text("Productos Comprados:", 20, 60);
+    doc.text("PRODUCTOS/SERVICIOS", 20, 110);
 
     doc.setFontSize(12);
-    let y = 70;
+    doc.text("DESCRIPCIÓN", 20, 120);
+    doc.text("CANTIDAD", 100, 120);
+    doc.text("PRECIO", 150, 120);
+
+    let y = 130;
     products.forEach((product, index) => {
-      doc.text(`Producto ${index + 1}: ${product.modelo}`, 20, y);
-      doc.text(`Marca: ${product.marca}`, 20, y + 10);
-      doc.text(`Precio: ${formatPrice(product.precio)}`, 20, y + 20);
-      y += 30;
+      doc.text(`${product.modelo}`, 20, y);
+      doc.text(`1`, 100, y);
+      doc.text(`${formatPrice(product.precio)}`, 150, y);
+      y += 10;
     });
 
     // Total de la compra
     doc.setFontSize(14);
-    doc.text(`Total: ${formatPrice(totalAmount)}`, 20, y + 10);
+    doc.text("TOTAL", 20, y + 10);
+    doc.text(`${formatPrice(totalAmount)}`, 150, y + 10);
 
-    return doc.output("blob");
+    // Notas
+    doc.setFontSize(12);
+    doc.text("NOTAS:", 20, y + 30);
+    doc.text("Gracias por elegirnos!", 20, y + 40);
+
+    // Descargar el PDF
+    doc.save("factura.pdf");
   };
 
   // Función para manejar el clic en el botón de proceder al pago
@@ -124,44 +168,9 @@ document.addEventListener("DOMContentLoaded", () => {
       (sum, product) => sum + product.precio,
       0
     );
-    const pdfBlob = generatePDF(products, totalAmount);
-    const userEmail = localStorage.getItem("correo");
-
-    if (userEmail) {
-      sendEmail(pdfBlob, userEmail);
-    } else {
-      alert("No se encontró un correo electrónico registrado.");
-    }
+    generatePDF(products, totalAmount);
   };
 
   // Añadir evento de clic al botón de proceder al pago
   checkoutButton.addEventListener("click", handleCheckout);
-
-  // Función para enviar el PDF por correo
-  const sendEmail = (pdfBlob, userEmail) => {
-    emailjs.init("YOUR_USER_ID"); // Reemplaza con tu userID de EmailJS
-
-    const formData = new FormData();
-    formData.append("correo", "YOUR_SERVICE_ID"); // Reemplaza con tu serviceID de EmailJS
-    formData.append("factura", "YOUR_TEMPLATE_ID"); // Reemplaza con tu templateID de EmailJS
-    formData.append("william", "YOUR_USER_ID"); // Reemplaza con tu userID de EmailJS
-    formData.append("user_email", userEmail);
-    formData.append("file", pdfBlob, "factura.pdf");
-
-    fetch("https://api.emailjs.com/api/v1.0/email/send-form", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert("Factura enviada por correo electrónico.");
-        } else {
-          alert("Error al enviar la factura por correo electrónico.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("Error al enviar la factura por correo electrónico.");
-      });
-  };
 });
