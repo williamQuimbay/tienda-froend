@@ -51,9 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <button class="add-to-cart-button">
                 <i class="fas fa-shopping-cart"></i> Agregar al Carrito
               </button>
-              <button class="buy-now-button">
-                <i class="fas fa-credit-card"></i> Comprar
-              </button>
+              
             </div>
           </div>
         </div>
