@@ -155,6 +155,7 @@ function handleLogout() {
   localStorage.removeItem("correo");
   localStorage.removeItem("rol");
   localStorage.removeItem("nombre_usuario");
+  localStorage.removeItem("cart");
   window.location.href = "./vista/login.html";
 }
 
