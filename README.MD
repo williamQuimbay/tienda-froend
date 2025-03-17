@@ -143,3 +143,9 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE
 ## Contacto
 
 Si tienes alguna pregunta o sugerencia, no dudes en contactarme a través de quimbayfeo@gmail.com.
+
+## integrantes de grupo
+
+## william leonardo quimbay feo
+
+## miguel angel tapiero
