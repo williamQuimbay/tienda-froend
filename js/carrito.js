@@ -163,12 +163,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Función para manejar el clic en el botón de proceder al pago
   const handleCheckout = () => {
-    const products = getCartProducts();
-    const totalAmount = products.reduce(
-      (sum, product) => sum + product.precio,
-      0
-    );
-    generatePDF(products, totalAmount);
+    const userName = localStorage.getItem("nombre_usuario");
+    if (!userName) {
+      // Redirigir al inicio de sesión si el usuario no ha iniciado sesión
+      window.location.href = "../vista/login.html";
+    } else {
+      const products = getCartProducts();
+      const totalAmount = products.reduce(
+        (sum, product) => sum + product.precio,
+        0
+      );
+      generatePDF(products, totalAmount);
+    }
   };
 
   // Añadir evento de clic al botón de proceder al pago

@@ -74,7 +74,14 @@ Si eres un administrador, verás un botón adicional para acceder a la vista de 
 
 Los botones de administración solo son visibles para los usuarios con rol de administrador. Estos botones permiten agregar, editar y eliminar productos. La visibilidad de estos botones se maneja mediante la autenticación y el rol del usuario.
 
-## usuario para ingresar profesor profe@ejemplo.com contraseña: 123456
+### Validación de Inicio de Sesión
+
+Antes de proceder con el pago, se valida si el usuario ha iniciado sesión. Si no ha iniciado sesión, será redirigido a la página de inicio de sesión. Si ha iniciado sesión, se generará el PDF de la factura.
+
+## Usuario para ingresar
+
+- **Correo:** profe@ejemplo.com
+- **Contraseña:** 123456
 
 ## Estructura del Proyecto
 
@@ -108,6 +115,7 @@ Este archivo contiene la lógica JavaScript para la página del carrito de compr
 - Obtener los productos del carrito desde `localStorage` (`getCartProducts`).
 - Renderizar los productos en el carrito (`renderCartProducts`).
 - Eliminar productos del carrito (`removeProductFromCart`).
+- Validar si el usuario ha iniciado sesión antes de proceder con el pago (`handleCheckout`).
 
 ### vista/admin.html
 
@@ -125,6 +133,24 @@ Este archivo contiene la lógica JavaScript para la página de administración. 
 ### server.js
 
 Este archivo contiene la configuración del servidor utilizando Node.js y Express. Incluye rutas para manejar las solicitudes de productos y autenticación de usuarios.
+
+## Arquitectura del Proyecto
+
+El proyecto sigue una arquitectura de Cliente-Servidor, organizada de la siguiente manera:
+
+- **Frontend:** Implementado con HTML, CSS y JavaScript.
+- **Backend:** Implementado con Node.js y Express. El servidor maneja las solicitudes HTTP y proporciona datos a través de una API RESTful.
+- **Almacenamiento:** Los datos del carrito de compras y la autenticación de usuarios se manejan utilizando `localStorage`.
+
+## Modo de Trabajo
+
+El proyecto se desarrolló utilizando el siguiente flujo de trabajo:
+
+1. **Planificación:** Se definieron los requisitos y las características del proyecto.
+2. **Desarrollo:** Se implementaron las funcionalidades utilizando HTML, CSS, JavaScript, Node.js y Express.
+3. **Pruebas:** Se realizaron pruebas para asegurar el correcto funcionamiento de la aplicación.
+4. **Despliegue:** La aplicación se desplegó en un entorno de desarrollo local.
+5. **Mantenimiento:** Se realizaron ajustes y mejoras según los comentarios recibidos.
 
 ## Contribución
 
@@ -144,8 +170,7 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE
 
 Si tienes alguna pregunta o sugerencia, no dudes en contactarme a través de quimbayfeo@gmail.com.
 
-## integrantes de grupo
+## Integrantes del Grupo
 
-## william leonardo quimbay feo
-
-## miguel angel tapiero
+- William Leonardo Quimbay Feo
+- Miguel Angel Tapiero
